@@ -1,0 +1,230 @@
+/* ⚡ LENNOX ULTRAGLOW CSS – 2025 EDITION */
+
+
+/* === UNIVERSAL RESET === */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+    font-family: 'Orbitron', sans-serif;
+}
+
+
+/* === BACKGROUND: GALACTIC WAVE === */
+
+body {
+    background: radial-gradient(ellipse at top left, #1e003a, #0f0f3a 50%, #09001d);
+    color: #fff;
+    font-size: 16px;
+    overflow-x: hidden;
+    animation: backgroundShift 20s ease-in-out infinite;
+}
+
+@keyframes backgroundShift {
+    0%,
+    100% {
+        background-position: top left;
+    }
+    50% {
+        background-position: bottom right;
+    }
+}
+
+
+/* === FLOATING PARTICLES === */
+
+body::before {
+    content: "";
+    position: fixed;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.05) 1px, transparent 2px);
+    background-size: 50px 50px;
+    animation: rotateParticles 100s linear infinite;
+    z-index: -1;
+}
+
+@keyframes rotateParticles {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+
+/* === HEADER === */
+
+.home-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2rem 5vw;
+    background: linear-gradient(145deg, rgba(10, 0, 20, 0.85), rgba(30, 0, 50, 0.9));
+    border-bottom: 2px solid #9e00ff;
+    box-shadow: 0 0 6px 1.5px rgba(158, 0, 255, 0.2), /* softer, smaller glow ring */
+    inset 0 0 5px rgba(158, 0, 255, 0.12);
+    /* subtle inner glow */
+    animation: neonPulseBorder 3s ease-in-out infinite;
+    transition: all 0.5s ease-in-out;
+    z-index: 99;
+    position: relative;
+    border-radius: 0 0 20px 20px;
+}
+
+@keyframes neonPulseBorder {
+    0%,
+    100% {
+        box-shadow: 0 0 5px 1.2px rgba(158, 0, 255, 0.15), inset 0 0 5px rgba(158, 0, 255, 0.1);
+    }
+    50% {
+        box-shadow: 0 0 9px 3px rgba(158, 0, 255, 0.35), inset 0 0 8px rgba(158, 0, 255, 0.25);
+    }
+}
+
+.home-header h1 {
+    font-size: 3.5rem;
+    font-weight: 900;
+    letter-spacing: 2px;
+    background: linear-gradient(90deg, #ff00ff, #00fff2, #ff00ff, #9e00ff);
+    background-size: 300%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: neonWave 6s linear infinite, neonPulseText 3s ease-in-out infinite;
+    filter: drop-shadow(0 0 4px rgba(255, 0, 255, 0.3));
+    /* lighter, smaller text glow */
+}
+
+@keyframes neonPulseText {
+    0%,
+    100% {
+        text-shadow: 0 0 4px #ff00ff, 0 0 8px #00fff2;
+    }
+    50% {
+        text-shadow: 0 0 10px #ff00ff, 0 0 20px #00fff2;
+    }
+}
+
+@keyframes neonWave {
+    0% {
+        background-position: 0%;
+    }
+    100% {
+        background-position: 300%;
+    }
+}
+
+
+/* === SEARCH BAR === */
+
+.search-bar {
+    padding: 12px 24px;
+    border-radius: 30px;
+    border: 2px solid #ff00f7;
+    background: rgba(255, 255, 255, 0.05);
+    color: #fff;
+    font-size: 1rem;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 0 12px #ff00f7;
+    transition: all 0.3s ease;
+}
+
+.search-bar:focus {
+    border-color: #00fff2;
+    box-shadow: 0 0 18px #00fff2;
+}
+
+
+/* === PRODUCT SECTION === */
+
+.product-section {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 40px;
+    padding: 60px 5vw;
+    animation: fadeInUp 1.5s ease;
+}
+
+@keyframes fadeInUp {
+    0% {
+        transform: translateY(30px);
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.product-card {
+    background: rgba(36, 0, 60, 0.8);
+    border-radius: 20px;
+    padding: 24px;
+    box-shadow: 0 10px 30px rgba(255, 0, 255, 0.3);
+    backdrop-filter: blur(8px);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.product-card:hover {
+    transform: translateY(-5px) scale(1.02);
+    box-shadow: 0 15px 40px rgba(255, 0, 255, 0.5);
+}
+
+
+/* === BUTTONS === */
+
+button {
+    padding: 12px 24px;
+    border: none;
+    border-radius: 10px;
+    background: linear-gradient(45deg, #ff00ff, #00fff2);
+    color: white;
+    font-size: 1rem;
+    font-weight: bold;
+    box-shadow: 0 0 10px #ff00ff;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    animation: shimmerGlow 4s ease-in-out infinite;
+}
+
+@keyframes shimmerGlow {
+    0% {
+        box-shadow: 0 0 8px #ff00ff;
+    }
+    50% {
+        box-shadow: 0 0 16px #00fff2;
+    }
+    100% {
+        box-shadow: 0 0 8px #ff00ff;
+    }
+}
+
+button:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 20px #ff00ff, 0 0 30px #00fff2;
+}
+
+
+/* === RESPONSIVE === */
+
+@media (max-width: 768px) {
+    .home-header {
+        flex-direction: column;
+        text-align: center;
+        gap: 1rem;
+    }
+    .home-header h1 {
+        font-size: 2rem;
+    }
+    .product-section {
+        grid-template-columns: 1fr;
+    }
+    .search-bar {
+        width: 100%;
+    }
+}

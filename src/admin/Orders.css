@@ -1,0 +1,198 @@
+/* === ORDERS.CSS - ADMIN ORDERS BANG BANG V9000 === */
+
+.orders-panel {
+    max-width: 960px;
+    margin: 2rem auto 5rem auto;
+    background: linear-gradient(135deg, #4b0082, #6a0dad 80%);
+    border-radius: 20px;
+    padding: 2.5rem 3rem;
+    box-shadow: 0 0 30px #9b30ffcc;
+    color: #eee;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    user-select: none;
+}
+
+.orders-panel h2 {
+    text-align: center;
+    font-size: 2.4rem;
+    margin-bottom: 2rem;
+    color: #d8b3ff;
+    text-shadow: 0 0 8px #bb33ffaa;
+    letter-spacing: 0.1em;
+    font-weight: 700;
+}
+
+.filter-bar {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 1.8rem;
+}
+
+.filter-bar input[type="text"],
+.filter-bar select {
+    padding: 0.6rem 1rem;
+    border-radius: 12px;
+    border: none;
+    font-size: 1.1rem;
+    width: 220px;
+    outline: none;
+    background: #3e007d;
+    color: #eee;
+    box-shadow: 0 0 8px #9b30ffcc;
+    transition: all 0.3s ease;
+}
+
+.filter-bar input[type="text"]:focus,
+.filter-bar select:focus {
+    background: #5e1aff;
+    box-shadow: 0 0 14px #cc77ffdd;
+    color: #fff;
+}
+
+.no-orders-msg,
+.loading-msg,
+.error-msg {
+    font-size: 1.3rem;
+    color: #ffaaffcc;
+    text-align: center;
+    margin-top: 2rem;
+    font-weight: 600;
+    user-select: none;
+}
+
+.orders-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1.8rem;
+}
+
+.order-card {
+    background: #5600aaee;
+    border-radius: 18px;
+    padding: 1.5rem 2rem;
+    box-shadow: 0 0 14px #b573ffaa;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: all 0.4s ease;
+    user-select: none;
+}
+
+.order-card:hover {
+    box-shadow: 0 0 30px #cc77ffdd;
+    transform: translateY(-4px);
+}
+
+.order-card.delivered {
+    background: #2e2e2eaa;
+    color: #9d9d9d;
+    text-decoration: line-through;
+    box-shadow: 0 0 12px #777777aa;
+    pointer-events: none;
+    user-select: none;
+}
+
+.order-info {
+    display: flex;
+    gap: 1.6rem;
+    flex-grow: 1;
+    align-items: center;
+}
+
+.order-product-image {
+    width: 100px;
+    height: 100px;
+    border-radius: 16px;
+    object-fit: cover;
+    border: 3px solid #bb33ffdd;
+    box-shadow: 0 0 16px #bb33ffcc;
+    user-select: none;
+}
+
+.order-details {
+    color: #e6d9ff;
+    font-size: 1rem;
+    max-width: 560px;
+    line-height: 1.4;
+    user-select: none;
+}
+
+.order-details p {
+    margin: 0.18rem 0;
+}
+
+.status-tag {
+    padding: 0.2rem 0.6rem;
+    border-radius: 10px;
+    font-weight: 700;
+    font-size: 0.9rem;
+    user-select: none;
+    box-shadow: 0 0 8px #a050ffcc;
+    transition: background-color 0.3s ease;
+}
+
+.status-pending {
+    background-color: #a352ff88;
+    color: #fff;
+    text-shadow: 0 0 4px #9b30ffcc;
+}
+
+.status-delivered {
+    background-color: #66ff99cc;
+    color: #003300;
+    text-shadow: none;
+}
+
+.mark-delivered-btn {
+    background: linear-gradient(45deg, #a252ff, #6a0dad);
+    color: #fff;
+    border: none;
+    padding: 0.8rem 1.4rem;
+    border-radius: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    user-select: none;
+    box-shadow: 0 0 18px #bb33ffcc;
+    transition: all 0.35s ease;
+    font-size: 1.05rem;
+    flex-shrink: 0;
+}
+
+.mark-delivered-btn:hover:not(:disabled) {
+    background: linear-gradient(45deg, #d98cff, #a050ff);
+    box-shadow: 0 0 28px #ee99ffcc;
+    transform: scale(1.05);
+}
+
+.mark-delivered-btn:disabled {
+    background: #553399aa;
+    cursor: not-allowed;
+    box-shadow: none;
+    color: #ccc;
+}
+
+@media screen and (max-width: 720px) {
+    .orders-panel {
+        padding: 1.5rem 1.2rem;
+    }
+    .order-info {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .order-product-image {
+        width: 80px;
+        height: 80px;
+    }
+    .order-details {
+        max-width: 100%;
+        font-size: 0.9rem;
+    }
+    .mark-delivered-btn {
+        width: 100%;
+        margin-top: 1rem;
+    }
+}
