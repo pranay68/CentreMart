@@ -67,9 +67,7 @@ body::before {
     padding: 2rem 5vw;
     background: linear-gradient(145deg, rgba(10, 0, 20, 0.85), rgba(30, 0, 50, 0.9));
     border-bottom: 2px solid #9e00ff;
-    box-shadow: 0 0 6px 1.5px rgba(158, 0, 255, 0.2), /* softer, smaller glow ring */
-    inset 0 0 5px rgba(158, 0, 255, 0.12);
-    /* subtle inner glow */
+    box-shadow: 0 0 6px 1.5px rgba(158, 0, 255, 0.2), inset 0 0 5px rgba(158, 0, 255, 0.12);
     animation: neonPulseBorder 3s ease-in-out infinite;
     transition: all 0.5s ease-in-out;
     z-index: 99;
@@ -97,7 +95,6 @@ body::before {
     -webkit-text-fill-color: transparent;
     animation: neonWave 6s linear infinite, neonPulseText 3s ease-in-out infinite;
     filter: drop-shadow(0 0 4px rgba(255, 0, 255, 0.3));
-    /* lighter, smaller text glow */
 }
 
 @keyframes neonPulseText {
@@ -142,13 +139,9 @@ body::before {
 
 /* === PRODUCT SECTION === */
 
-
-/* === PRODUCT SECTION === */
-
 .product-section {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    /* 4 columns on desktop, ULTRA WIDE */
     gap: 40px;
     padding: 60px 5vw;
     animation: fadeInUp 1.5s ease;
@@ -157,7 +150,6 @@ body::before {
 @media (max-width: 768px) {
     .product-section {
         grid-template-columns: repeat(2, 1fr);
-        /* 2 columns on mobile - no more lonely single column! */
     }
 }
 
@@ -173,6 +165,57 @@ body::before {
 .product-card:hover {
     transform: translateY(-5px) scale(1.02);
     box-shadow: 0 15px 40px rgba(255, 0, 255, 0.5);
+}
+
+
+/* === CATEGORY PANEL GRID === */
+
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 30px;
+    margin-top: 30px;
+    margin-bottom: 60px;
+    padding: 0 5vw;
+}
+
+@media (max-width: 768px) {
+    .product-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+
+/* === CATEGORY HEADER === */
+
+.category-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 80px 5vw 20px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #ff00ff;
+}
+
+.category-header h2 {
+    font-size: 2rem;
+    font-weight: bold;
+    background: linear-gradient(90deg, #ff00ff, #00fff2, #ff00ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: neonWave 6s linear infinite;
+}
+
+.see-all-btn {
+    color: #00fff2;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1rem;
+    transition: color 0.3s ease;
+}
+
+.see-all-btn:hover {
+    color: #ff00ff;
 }
 
 
