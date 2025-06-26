@@ -1,9 +1,8 @@
-// admin/Admin.jsx
 import React, { useState } from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
 import AdminLogin from "./AdminLogin";
-import AdminDashboard from "./AdminDashboard";
-import AddProduct from "./AddProduct";
+import AdminLayout from "./AdminLayout";
+import { Toaster } from 'react-hot-toast';
 
 const Admin = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -12,19 +11,26 @@ const Admin = () => {
     setIsLoggedIn(status);
   };
 
+  const handleLogout = () => {
+    setIsLoggedIn(false);
+  };
+
   if (!isLoggedIn) {
-    return <AdminLogin onLogin={handleLogin} />;
+    return (
+      <>
+        <AdminLogin onLogin={handleLogin} />
+        <Toaster position="top-right" />
+      </>
+    );
   }
 
   return (
-    <Routes>
-      <Route path="/" element={<Navigate to="dashboard" />} />
-      <Route path="dashboard" element={<AdminDashboard />} />
-      <Route path="add-product" element={<AddProduct />} />
- 
-      {/* Redirect unknown /admin/* paths to dashboard */}
-      <Route path="*" element={<Navigate to="dashboard" />} />
-    </Routes>
+    <>
+      <Routes>
+        <Route path="/*" element={<AdminLayout onLogout={handleLogout} />} />
+      </Routes>
+      <Toaster position="top-right" />
+    </>
   );
 };
 
