@@ -227,15 +227,28 @@ const Orders = () => {
                           <div className="text-sm font-medium text-gray-900">
                             {order.productName}
                           </div>
+                          {order.quantity > 1 && (
+                            <div className="text-xs text-gray-500">
+                              Qty: {order.quantity}
+                            </div>
+                          )}
                         </div>
                       </div>
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap">
                       <div className="text-sm font-medium text-gray-900">{order.customerName}</div>
                       <div className="text-sm text-gray-500">{order.address}</div>
+                      {order.isGuest && (
+                        <span className="inline-flex px-2 py-1 text-xs font-semibold rounded-full bg-gray-100 text-gray-800">
+                          Guest
+                        </span>
+                      )}
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
-                      {order.phone}
+                      <div>{order.phone}</div>
+                      {order.email && (
+                        <div className="text-xs text-gray-500">{order.email}</div>
+                      )}
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
                       Rs. {order.price?.toLocaleString()}

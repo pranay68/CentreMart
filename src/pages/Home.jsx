@@ -1,7 +1,7 @@
-import { Link } from 'react-router-dom';
 import React, { useEffect, useState, useRef, useCallback } from 'react';
 import ProductCard from '../components/ProductCard';
 import CategoryPanel from '../components/CategoryPanel';
+import Header from '../components/Header';
 import { db } from '../firebase/config';
 import {
   collection,
@@ -62,34 +62,21 @@ const Home = () => {
   };
 
   const fetchPanels = async () => {
-    const catSnap = await getDocs(
-      query(collection(db, 'categories'), where('enabled', '==', true), orderBy('order'))
-    );
-    const cats = catSnap.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+    // Get unique categories from products
+    const productsSnapshot = await getDocs(collection(db, 'products'));
+    const allProducts = productsSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+    
+    const categories = [...new Set(allProducts.map(p => p.category).filter(Boolean))];
+    
+    const panels = categories.map(category => {
+      const categoryProducts = allProducts.filter(p => p.category === category);
+      return {
+        title: category,
+        products: categoryProducts.slice(0, 6)
+      };
+    }).filter(panel => panel.products.length > 0);
 
-    const panels = await Promise.all(
-      cats.map(async cat => {
-        const productSnap = await getDocs(
-          query(
-            collection(db, 'products'),
-            where('category', '==', cat.name),
-            orderBy('name'),
-            limit(6)
-          )
-        );
-        const products = productSnap.docs.map(doc => ({ id: doc.id, ...doc.data() }));
-        return {
-          title: cat.name,
-          products: products
-        };
-      })
-    );
-
-    const filteredPanels = panels.filter(panel =>
-      panel.products && panel.products.length > 0
-    );
-
-    setPanels(filteredPanels);
+    setPanels(panels);
   };
 
   useEffect(() => {
@@ -115,18 +102,9 @@ const Home = () => {
 
   return (
     <div className="home-page">
-      <header className="home-header">
-        <h1>🛒 Centre Mart</h1>
-        <input
-          className="search-bar"
-          type="text"
-          placeholder="Search for products..."
-          value={searchTerm}
-          onChange={e => setSearchTerm(e.target.value)}
-        />
-      </header>
+      <Header searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
 
-      {/* 🔥 Category Panels */}
+      {/* Category Panels */}
       {panels.length > 0 && !searchTerm && (
         <>
           {panels.map((panel, i) => {
@@ -142,7 +120,7 @@ const Home = () => {
         </>
       )}
 
-      {/* 🔁 Infinite Feed */}
+      {/* Infinite Feed */}
       {(panels.length === 0 || searchTerm) && (
         <section className="product-section">
           {!products.length && !searchTerm &&
@@ -175,8 +153,7 @@ const Home = () => {
             ))}
         </section>
       )}
-
-          </div>
+    </div>
   );
 };
 
